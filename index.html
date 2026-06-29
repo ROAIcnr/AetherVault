@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="light" lang="th">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>AetherVault - แดชบอร์ดหลัก</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1",
+                        "background": "#e8eaf0",
+                        "surface": "#e8eaf0",
+                        "on-surface": "#2e3040",
+                        "on-surface-variant": "#585a68",
+                        "surface-container": "#e2e4ea",
+                        "tertiary": "#7c3aed",
+                        "secondary-fixed-dim": "#b8baca",
+                    },
+                    spacing: {
+                        "18": "4.5rem",
+                        "22": "5.5rem"
+                    },
+                    boxShadow: {
+                        "neo": "4px 4px 8px rgba(0,0,0,.08), -4px -4px 8px rgba(255,255,255,.75)",
+                        "neoInset": "inset 4px 4px 8px rgba(0,0,0,.05), inset -4px -4px 8px rgba(255,255,255,.8)",
+                        "bottomNav": "0 -3px 8px rgba(0,0,0,.05)"
+                    },
+                    borderRadius: {
+                        "card": "22px",
+                        "icon": "18px"
+                    },
+                    fontFamily: {
+                        "sans": ["Plus Jakarta Sans", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #e8eaf0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            /* Safe area for mobile */
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .neomorph-raised {
+            box-shadow: var(--tw-shadow-neo);
+            background-color: #e8eaf0;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .neomorph-inset {
+            box-shadow: var(--tw-shadow-neoInset);
+            background-color: #e8eaf0;
+        }
+        .neomorph-raised:active {
+            box-shadow: var(--tw-shadow-neoInset);
+            transform: scale(0.98);
+        }
+        .circular-progress {
+            background: conic-gradient(#6366f1 calc(80 * 1%), #d0d2dc 0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circular-progress::before {
+            content: "";
+            position: absolute;
+            height: 82%;
+            width: 82%;
+            background-color: #e8eaf0;
+            border-radius: 50%;
+            box-shadow: var(--tw-shadow-neoInset);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+        }
+        .material-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        .ripple:active::after {
+            transform: scale(0, 0);
+            opacity: .1;
+            transition: 0s;
+        }
+
+        /* Custom responsive grid for icons */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+            row-gap: 1.5rem; /* gap-y-6 */
+            column-gap: 1rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-on-surface pb-32">
+    <!-- Top AppBar -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-background pt-[12px] pb-[8px]">
+        <div class="flex justify-between items-center px-6 w-full max-w-7xl mx-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 neomorph-raised rounded-lg flex items-center justify-center overflow-hidden ripple">
+                    <img alt="AetherVault Logo" class="w-full h-full object-cover" src="file_0000000096407207aa79f085021b7d7f.png" onerror="this.src='https://lh3.googleusercontent.com/aida-public/AB6AXuCwMeOpKP01sSFEmnYrzLkF5Ub7eNpDlTjr0PatwPhsLLztPr6ofyEBBxa7ht9Vlu9chznZD8jm_zKahrmWc87ULaxbq6Lj9KdX0-u5t5AJNfL9mfJEvD4CwlB0Wu6QtLNLssEF9TzvhP0o_frdP1EREifejUmCVFHvxBzkOFxchhxiDtPLwTSpoTD64eXgU6GIJu_Vlbjih3E3OVKLGi1srasH3EEoPaLF8KkF7KyQVndkdUTzrjM52RJZOrMW92x_hL54VLnDGxY'"/>
+                </div>
+                <h1 class="font-sans text-2xl font-semibold tracking-tight text-on-surface">AetherVault</h1>
+            </div>
+            <div class="flex gap-4">
+                <button class="w-10 h-10 neomorph-raised rounded-full flex items-center justify-center hover:bg-surface-container transition-colors ripple">
+                    <span class="material-symbols-outlined text-primary">search</span>
+                </button>
+                <button class="w-10 h-10 neomorph-raised rounded-full flex items-center justify-center hover:bg-surface-container transition-colors ripple">
+                    <span class="material-symbols-outlined text-primary">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pt-[80px] space-y-8">
+        <!-- Storage Analytics Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Internal Storage -->
+            <div class="neomorph-raised p-[20px] rounded-card flex items-center gap-6 group hover:translate-y-[-2px] ripple cursor-pointer">
+                <div class="relative w-24 h-24 circular-progress flex-shrink-0">
+                    <span class="relative z-10 font-bold text-lg text-primary">80%</span>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-semibold text-lg text-on-surface">ที่เก็บข้อมูลภายใน</h3>
+                        <span class="material-symbols-outlined text-on-surface-variant text-lg">chevron_right</span>
+                    </div>
+                    <p class="text-on-surface-variant text-sm mt-1">177.83 GB / 222.86 GB</p>
+                    <div class="mt-3 neomorph-inset h-1.5 w-full rounded-full overflow-hidden">
+                        <div class="bg-primary h-full w-[80%] rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Analyzer -->
+            <div class="neomorph-raised p-[20px] rounded-card flex items-center gap-6 group hover:translate-y-[-2px] ripple cursor-pointer">
+                <div class="w-24 h-24 neomorph-inset rounded-full flex items-center justify-center p-3">
+                    <div class="w-full h-full rounded-full" style="background: conic-gradient(#6366f1 0deg 90deg, #7c3aed 90deg 180deg, #b8baca 180deg 360deg);"></div>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-semibold text-lg text-on-surface">ตัววิเคราะห์ไฟล์</h3>
+                        <span class="material-symbols-outlined text-on-surface-variant text-lg">chevron_right</span>
+                    </div>
+                    <p class="text-on-surface-variant text-sm mt-1">ล้างไฟล์เพิ่มเติม</p>
+                    <div class="flex gap-2 mt-4">
+                        <span class="w-2 h-2 rounded-full bg-primary"></span>
+                        <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                        <span class="w-2 h-2 rounded-full bg-secondary-fixed-dim"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Grid -->
+        <section class="neomorph-raised p-8 rounded-card">
+            <div class="icon-grid">
+                <!-- Row 1 -->
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95 group-active:shadow-neoInset">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">image</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">รูปภาพ</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">movie</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">วิดีโอ</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">headphones</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">เสียง</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">android</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">APP</span>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">cleaning_services</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">โปรแกรมล้าง</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center relative transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">visibility_off</span>
+                        <div class="absolute top-1 right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-background"></div>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant text-center leading-tight">พรางวิดีโอ</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center relative transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">no_photography</span>
+                        <div class="absolute top-1 right-1 w-3 h-3 bg-yellow-400 rounded-full border-2 border-background"></div>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant text-center leading-tight">พรางรูปภาพ</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">description</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">ไฟล์ใหม่</span>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">app_maker</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">บีบอัด</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">settings_remote</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant text-center leading-tight">จัดการระยะไกล</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">cloud_download</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">Cloud Drive</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">auto_stories</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">คู่มือ</span>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">lan</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">LAN</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">upload_file</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant">FTP</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">delete_outline</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant text-center leading-tight">ถังขยะ</span>
+                </div>
+                <div class="flex flex-col items-center gap-2 group cursor-pointer ripple">
+                    <div class="w-[60px] h-[60px] neomorph-raised rounded-icon flex items-center justify-center transition-all group-active:scale-95">
+                        <span class="material-symbols-outlined text-primary text-3xl material-fill">apps</span>
+                    </div>
+                    <span class="text-[12px] font-normal text-on-surface-variant text-center leading-tight">ทั้งหมด</span>
+                </div>
+            </div>
+            <div class="mt-8 flex justify-center">
+                <div class="w-10 h-1 neomorph-inset rounded-full"></div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="space-y-4">
+            <h4 class="text-xs font-bold text-primary tracking-widest uppercase px-2">Bookmarks</h4>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button class="neomorph-raised p-4 rounded-card flex items-center gap-4 group transition-all ripple">
+                    <div class="w-12 h-12 neomorph-inset rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary material-fill">add_circle</span>
+                    </div>
+                    <span class="font-normal text-on-surface">เพิ่ม</span>
+                </button>
+                <button class="neomorph-raised p-4 rounded-card flex items-center gap-4 group transition-all ripple">
+                    <div class="w-12 h-12 neomorph-inset rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary material-fill">history</span>
+                    </div>
+                    <span class="font-normal text-on-surface">ดาวน์โหลด</span>
+                </button>
+                <button class="neomorph-raised p-4 rounded-card flex items-center gap-4 group transition-all ripple">
+                    <div class="w-12 h-12 neomorph-inset rounded-full flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary material-fill">language</span>
+                    </div>
+                    <span class="font-normal text-on-surface">ค้นหาเว็บไซต์</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 w-full z-50 bg-background rounded-t-[22px] shadow-[0_-3px_8px_rgba(0,0,0,0.05)] border-t border-outline-variant/30" style="padding-bottom: env(safe-area-inset-bottom);">
+        <div class="flex justify-around items-center px-4 py-3">
+            <a class="flex flex-col items-center justify-center text-primary scale-110 transition-transform ripple p-2 rounded-xl" href="#">
+                <span class="material-symbols-outlined material-fill">home</span>
+                <span class="font-sans text-[12px] font-medium mt-1">Home</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity ripple p-2 rounded-xl" href="#">
+                <span class="material-symbols-outlined">folder_open</span>
+                <span class="font-sans text-[12px] font-medium mt-1">Files</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity ripple p-2 rounded-xl" href="#">
+                <span class="material-symbols-outlined">health_and_safety</span>
+                <span class="font-sans text-[12px] font-medium mt-1">Health</span>
+            </a>
+            <a class="flex flex-col items-center justify-center text-on-surface-variant opacity-70 hover:opacity-100 transition-opacity ripple p-2 rounded-xl" href="#">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-sans text-[12px] font-medium mt-1">Settings</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Floating Action Button -->
+    <button class="fixed bottom-[90px] right-6 w-[60px] h-[60px] flex items-center justify-center bg-primary text-white rounded-full shadow-[2px_4px_12px_rgba(99,102,241,0.4)] active:scale-95 transition-all z-40 ripple" style="margin-bottom: env(safe-area-inset-bottom);">
+        <span class="material-symbols-outlined text-3xl" style="color: white !important;">add</span>
+    </button>
+
+    <script>
+        // Toggle Active State for Nav (Mock functionality)
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'scale-110', 'opacity-100');
+                    l.classList.add('text-on-surface-variant', 'opacity-70');
+                    l.querySelector('span').classList.remove('material-fill');
+                });
+                link.classList.add('text-primary', 'scale-110', 'opacity-100');
+                link.classList.remove('text-on-surface-variant', 'opacity-70');
+                link.querySelector('span').classList.add('material-fill');
+            });
+        });
+    </script>
+</body>
+</html>
